@@ -1,0 +1,17 @@
+{
+"name" : "Media Downloader",
+"description" : "Detect and download media",
+"version": "1.0",
+"manifest_version": 2,
+"browser_action": {
+	"default_popup": "popup.html",
+	"default_icon": "icon.png"
+},
+"permissions": [
+	"<all_urls>","webRequest","downloads"
+],
+"background": {
+	"scripts": ["bgp.js"],
+	"persistent": true
+}
+}
