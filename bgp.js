@@ -7,8 +7,7 @@ chrome.webRequest.onHeadersReceived.addListener(function(details) {
 			var e=d[a]; 
 			if(e.name=="Content-Range"){
 				if(e.value.substr(0,7)=='bytes 0'){
-					urls=details.url;
-					chrome.downloads.download({url: urls},function(id) { })
+					urls=details.url
 				}
 				break
 			}
