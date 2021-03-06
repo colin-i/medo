@@ -2,7 +2,7 @@ var urls;
 function verif(details){
 	var d=details.responseHeaders;
 	for (a in d){
-		var e=d[a]; 
+		var e=d[a];
 		if(e.name=="Content-Range"){
 			var b='bytes 0';
 			return e.value.substr(0,b.length)==b
