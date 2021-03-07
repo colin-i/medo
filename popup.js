@@ -15,7 +15,14 @@ function (response) {
 				var c=new URLSearchParams(b.search);
 				c.set('range','0-2147483647');
 				a=b.origin+b.pathname+'?'+c.toString();
-				window.open(a,'_blank')
+				chrome.tabs.create({url:a,selected:false/*is not pausing if true*/}, function(tab) {
+					chrome.tabs.executeScript(tab.id, {
+						code:  '(' + contentscript + ')()'
+					});
+					//focus
+					var updateProperties = { 'active': true };
+					chrome.tabs.update(tab.id, updateProperties, (tab) => { })
+				})
 			})
 		}
 		document.body.appendChild(btn)
@@ -24,4 +31,11 @@ function (response) {
 function unescap(a){
 	var doc = new DOMParser().parseFromString(a, "text/html");
 	return doc.documentElement.textContent
+}
+function contentscript(){
+	var e=document.body.getElementsByTagName('video');
+	for(var i=0;i<e.length;i++){
+		var q=e[i];
+		q.pause()
+	}
 }
