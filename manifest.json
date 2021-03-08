@@ -11,7 +11,7 @@
 	"<all_urls>","webRequest","downloads"
 ],
 "background": {
-	"scripts": ["bgp.js"],
+	"scripts": ["bgp_.js","items_.js"],
 	"persistent": true
 }
 }
