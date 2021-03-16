@@ -1,5 +1,4 @@
-var items = (function (){
-return{
+var items = (function (){return{
 values:undefined,
 verif: function(details){
 	var d=details.responseHeaders;
@@ -20,5 +19,4 @@ starter:function (details,media){
 	if(this.verif(details))
 		this.values=[details.url,media]
 }
-}
-})();
+}})()

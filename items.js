@@ -1,5 +1,4 @@
-var items = (function (){
-return{
+var items = (function (){return{
 unescap:function (a){
 	var doc = new DOMParser().parseFromString(a, "text/html");
 	return doc.documentElement.textContent
@@ -11,5 +10,4 @@ contentscript:function (){
 		q.pause()
 	}
 }
-}
-})()
+}})()

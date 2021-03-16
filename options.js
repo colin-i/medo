@@ -17,4 +17,4 @@ document.addEventListener('DOMContentLoaded', function() {
 })
 var options = (function (){return{
 range:'2147483647'
-})()
+}})()
