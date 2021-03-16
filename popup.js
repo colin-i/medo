@@ -13,7 +13,7 @@ function (response) {
 				var a=items.unescap(this.innerHTML);
 				var b=new URL(a);
 				var c=new URLSearchParams(b.search);
-				c.set('range','0-2147483647');
+				c.set('range','0-'+options.range);
 				a=b.origin+b.pathname+'?'+c.toString();
 				chrome.tabs.create({url:a,selected:false/*is not pausing if true*/}, function(tab) {
 					chrome.tabs.executeScript(tab.id, {
