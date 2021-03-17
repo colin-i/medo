@@ -25,6 +25,7 @@ function (response) {
 				})
 			})
 		}
+		btn.style.textAlign='left';
 		document.body.appendChild(btn)
 	}
 })
