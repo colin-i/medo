@@ -8,10 +8,10 @@
 	"default_icon": "icon.png"
 },
 "permissions": [
-	"<all_urls>","webRequest","downloads","storage"
+	"<all_urls>","webRequest","downloads","storage","tabs"
 ],
 "background": {
-	"scripts": ["bgp_.js","items_.js"],
+	"scripts": ["bgp-.js","items-.js"],
 	"persistent": true
 }
 }

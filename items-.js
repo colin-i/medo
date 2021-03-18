@@ -1,5 +1,5 @@
 var items = (function (){return{
-values:undefined,
+values:{},
 verif: function(details){
 	var d=details.responseHeaders;
 	for (a in d){
@@ -16,7 +16,14 @@ verif: function(details){
 	return false
 },
 starter:function (details,media){
-	if(this.verif(details))
-		this.values=[details.url,media]
+	if(this.verif(details)){
+		var tabid = details.tabId;
+		var vals=this.values;
+		chrome.tabs.get(tabid, function (tab) {
+			var t=tab.url;
+			if(!(t in vals))vals[t]={};
+			vals[t][details.url]=media
+		})
+	}
 }
 }})()
