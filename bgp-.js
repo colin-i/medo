@@ -23,15 +23,18 @@ chrome.webRequest.onHeadersReceived.addListener(function(details) {
 }, {urls: ["<all_urls>"]}, ['responseHeaders']);
 chrome.runtime.onMessage.addListener( function(request,sender,sendResponse)
 {
-	if(request){//.greeting=='unclosed'){
-		//throw away old results
-		chrome.tabs.getAllInWindow(null, function(tabs){
-			var collect={};
-			for (var i = 0; i < tabs.length; i++) {
-				var k=tabs[i].url;var v=items.values[k];
-				if(v)collect[k]=v
-			}
-			items.values=collect
-		})
+	if(request){
+		if(request.greeting)items.values={}
+		else{
+			//throw away old results
+			chrome.tabs.getAllInWindow(null, function(tabs){
+				var collect={};
+				for (var i = 0; i < tabs.length; i++) {
+					var k=tabs[i].url;var v=items.values[k];
+					if(v)collect[k]=v
+				}
+				items.values=collect
+			})
+		}
 	}else sendResponse(items.values)
 })

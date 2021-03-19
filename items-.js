@@ -18,11 +18,10 @@ verif: function(details){
 starter:function (details,media){
 	if(this.verif(details)){
 		var tabid = details.tabId;
-		var vals=this.values;
 		chrome.tabs.get(tabid, function (tab) {
 			var t=tab.url;
-			if(!(t in vals))vals[t]={};
-			vals[t][details.url]=media
+			if(!(t in items.values))items.values[t]={};
+			items.values[t][details.url]=media
 		})
 	}
 }

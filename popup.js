@@ -1,11 +1,12 @@
 chrome.runtime.sendMessage(null,{});//{greeting: "unclosed"});
 chrome.runtime.sendMessage(null,
 function (response) {
+	var cont=document.createElement("DIV");
 	for(var key in response){
 		var r=response[key];
 		var site = document.createElement("DIV");
 		site.innerHTML=key;
-		document.body.appendChild(site);
+		cont.appendChild(site);
 		for(var k in r){
 			var btn = document.createElement("BUTTON");
 			btn.innerHTML = k;
@@ -32,7 +33,16 @@ function (response) {
 				})
 			}
 			btn.style.textAlign='left';
-			document.body.appendChild(btn)
+			btn.style.display = "block";
+			cont.appendChild(btn)
 		}
 	}
+	var bt = document.createElement("BUTTON");
+	bt.innerHTML = "Clear";
+	bt.addEventListener ("click", function() {
+		cont.remove();
+		chrome.runtime.sendMessage(null,{greeting: true})
+	});
+	cont.appendChild(bt);
+	document.body.appendChild(cont)
 })
