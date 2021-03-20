@@ -1,5 +1,6 @@
 chrome.runtime.onMessage.addListener(function(response){
 	var cont=document.createElement("DIV");
+	cont.style.whiteSpace='nowrap';
 	for(var key in response){
 		var r=response[key];
 		var site = document.createElement("DIV");
@@ -28,11 +29,12 @@ chrome.runtime.onMessage.addListener(function(response){
 						var updateProperties = { 'active': true };
 						chrome.tabs.update(tab.id, updateProperties, (tab) => { })
 					})
-				})
+				});
+				cont.appendChild(document.createTextNode('x'))
 			}
 			btn.style.textAlign='left';
-			btn.style.display = "block";
-			cont.appendChild(btn)
+			cont.appendChild(btn);
+			cont.appendChild(document.createElement("BR"))
 		}
 	}
 	var bt = document.createElement("BUTTON");
