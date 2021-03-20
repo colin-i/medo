@@ -1,6 +1,5 @@
-chrome.runtime.sendMessage(null,{});//{greeting: "unclosed"});
-chrome.runtime.sendMessage(null,
-function (response) {
+chrome.runtime.sendMessage(null,{});//{greeting: true});
+chrome.runtime.onMessage.addListener(function(response){
 	var cont=document.createElement("DIV");
 	for(var key in response){
 		var r=response[key];
@@ -41,7 +40,7 @@ function (response) {
 	bt.innerHTML = "Clear";
 	bt.addEventListener ("click", function() {
 		cont.remove();
-		chrome.runtime.sendMessage(null,{greeting: true})
+		chrome.runtime.sendMessage(null)
 	});
 	cont.appendChild(bt);
 	document.body.appendChild(cont)
