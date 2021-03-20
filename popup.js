@@ -1,4 +1,3 @@
-chrome.runtime.sendMessage(null,{});//{greeting: true});
 chrome.runtime.onMessage.addListener(function(response){
 	var cont=document.createElement("DIV");
 	for(var key in response){
@@ -44,4 +43,5 @@ chrome.runtime.onMessage.addListener(function(response){
 	});
 	cont.appendChild(bt);
 	document.body.appendChild(cont)
-})
+});
+chrome.runtime.sendMessage(null,{});//{greeting: true})
