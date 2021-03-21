@@ -37,13 +37,11 @@ chrome.runtime.onMessage.addListener(function(response){
 			cont.appendChild(document.createElement("BR"))
 		}
 	}
-	var bt = document.createElement("BUTTON");
-	bt.innerHTML = "Clear";
+	var bt = document.getElementById('clear');
 	bt.addEventListener ("click", function() {
 		cont.remove();
 		chrome.runtime.sendMessage(null)
 	});
-	cont.appendChild(bt);
-	document.body.appendChild(cont)
+	bt.parentNode.insertBefore(cont, bt)
 });
-chrome.runtime.sendMessage(null,{});//{greeting: true})
+chrome.runtime.sendMessage(null,{})//no callback here,bgp will timeout for tabs

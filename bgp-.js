@@ -7,7 +7,7 @@ chrome.webRequest.onHeadersReceived.addListener(function(details) {
 		for (a in d){
 			var e=d[a];
 			if(e.name=="Content-Type"){
-				var b=['video/mp4','audio/mp4'];
+				var b=options.xhr_ct;
 				for (x in b){
 					var f=b[x];
 					if(e.value.substr(0,f.length)==f){
@@ -21,9 +21,16 @@ chrome.webRequest.onHeadersReceived.addListener(function(details) {
 	}
 	return {responseHeaders: d}
 }, {urls: ["<all_urls>"]}, ['responseHeaders']);
-chrome.runtime.onMessage.addListener( function(request)//,sender,sendResponse
+chrome.runtime.onMessage.addListener( function(request,sender,sendResponse)
 {
 	if(request){
+		if(request.xhr){
+			var s=',';
+			if(request.xhr===true)//'1'==true
+				sendResponse({xhr:options.xhr_ct.join(s),sep:s});
+			else options.xhr_ct=request.xhr.split(s);
+			return
+		}
 		//throw away old results
 		chrome.tabs.getAllInWindow(null, function(tabs){
 			var collect={};
